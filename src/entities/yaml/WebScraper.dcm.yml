@@ -1,0 +1,17 @@
+Product:
+  type: entity
+  table: webscraper
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    data:
+      type: string
+    ip_address:
+      type: string
+    url:
+      type: string
+    created:
+      type: integer

@@ -5,12 +5,13 @@
     "symfony/yaml": "2.*",
     "guzzlehttp/guzzle": "~6.0",
     "sonata-project/exporter": "^1.6",
-    "behat/behat": "~2.5"
+    "behat/behat": "~2.5",
+    "guiguiboy/php-cli-progress-bar": "@dev"
   },
   "autoload": {
     "psr-4": {
       "App\\Controller\\": "src/Controller",
-      "App\\Trait\\": "src/Trait",
+      "App\\Traits\\": "src/Traits",
       "App\\Entity\\": "src/entities/default/Entity",
       "App\\Exception\\": "src/Exception"
     }
@@ -20,5 +21,6 @@
       "name": "Brigido Alejo",
       "email": "brigsalejo@gmail.com"
     }
-  ]
+  ],
+  "minimum-stability": "stable"
 }

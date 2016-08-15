@@ -9,6 +9,14 @@
 namespace App\Controller;
 
 
+use App\Traits\Options;
+
 class GithubController {
+
+  use Options;
+
+  public function index() {
+    
+  }
 
 }

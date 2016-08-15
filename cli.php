@@ -8,14 +8,21 @@
 
 require_once "bootstrap.php";
 
-$newScrape = $argv[1];
+//$newScrape = $argv[1];
+
+
+$githubController = new \App\Controller\GithubController(); 
+
+var_dump($githubController->getParams($argv));
+//var_dump($argv);
+
 
 //$product = new Product();
 //$product->setName($newProductName);
 
 // Send an asynchronous request.
 
-$client = new \GuzzleHttp\Client();
+//$client = new \GuzzleHttp\Client();
 //$request = new GuzzleHttp\Psr7\Request('GET', 'http://httpbin.org');
 //$promise = $client->sendAsync($request)->then(function ($response) {
 //  echo 'I completed! ' . $response->getBody();
