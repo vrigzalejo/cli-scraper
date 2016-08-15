@@ -1,0 +1,24 @@
+{
+  "name": "vrigzalejo/cli-scraper",
+  "require": {
+    "doctrine/orm": "v2.5.4",
+    "symfony/yaml": "2.*",
+    "guzzlehttp/guzzle": "~6.0",
+    "sonata-project/exporter": "^1.6",
+    "behat/behat": "~2.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\Controller\\": "src/Controller",
+      "App\\Trait\\": "src/Trait",
+      "App\\Entity\\": "src/entities/default/Entity",
+      "App\\Exception\\": "src/Exception"
+    }
+  },
+  "authors": [
+    {
+      "name": "Brigido Alejo",
+      "email": "brigsalejo@gmail.com"
+    }
+  ]
+}
