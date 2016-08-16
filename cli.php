@@ -8,28 +8,15 @@
 
 require_once "bootstrap.php";
 
-//$newScrape = $argv[1];
 
+$webScraperController = new \App\Controller\WebScraperController(); 
+$checkReturn = $webScraperController->getParams($argv);
 
-$githubController = new \App\Controller\GithubController(); 
+if(!$checkReturn) {
+  exit;
+}
 
-var_dump($githubController->getParams($argv));
-//var_dump($argv);
-
-
-//$product = new Product();
-//$product->setName($newProductName);
-
-// Send an asynchronous request.
-
-//$client = new \GuzzleHttp\Client();
-//$request = new GuzzleHttp\Psr7\Request('GET', 'http://httpbin.org');
-//$promise = $client->sendAsync($request)->then(function ($response) {
-//  echo 'I completed! ' . $response->getBody();
-//});
-//$promise->wait();
-//
-//$entityManager->persist($product);
-//$entityManager->flush();
-//
-//echo "Created Product with ID " . $product->getId() . "\n";
+if($checkReturn['a'] === 'github' || $checkReturn['action'] === 'github') {
+  $githubController = new \App\Controller\GithubController();
+  $githubController->index(new \GuzzleHttp\Client(), $checkReturn);
+}
