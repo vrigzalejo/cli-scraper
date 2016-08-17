@@ -46,9 +46,9 @@ trait CliOptions {
       }
     }
 
-    if($options['a'] && $options['action'] ||
-      $options['e'] && $options['export'] ||
-      $options['f'] && $options['file']) {
+    if(isset($options['a']) && isset($options['action']) ||
+      isset($options['e']) && isset($options['export']) ||
+      isset($options['f']) && isset($options['file'])) {
       print("Found duplicate type of options.\n");
       print("Please type 'php cli.php help' to see the available commands.\n");
       return false;
