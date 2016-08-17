@@ -6,7 +6,8 @@
     "guzzlehttp/guzzle": "~6.0",
     "sonata-project/exporter": "^1.6",
     "behat/behat": "~2.5",
-    "guiguiboy/php-cli-progress-bar": "@dev"
+    "guiguiboy/php-cli-progress-bar": "@dev",
+    "fabpot/goutte": "^3.1"
   },
   "autoload": {
     "psr-4": {
@@ -14,7 +15,8 @@
       "App\\Controller\\": "src/Controller",
       "App\\Traits\\": "src/Traits",
       "App\\Entity\\": "src/entities/default/Entity",
-      "App\\Exception\\": "src/Exception"
+      "App\\Exception\\": "src/Exception",
+      "App\\": "src"
     }
   },
   "authors": [
