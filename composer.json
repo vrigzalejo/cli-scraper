@@ -4,7 +4,6 @@
     "doctrine/orm": "v2.5.4",
     "symfony/yaml": "2.*",
     "guzzlehttp/guzzle": "~6.0",
-    "sonata-project/exporter": "^1.6",
     "behat/behat": "~2.5",
     "guiguiboy/php-cli-progress-bar": "@dev",
     "fabpot/goutte": "^3.1"
