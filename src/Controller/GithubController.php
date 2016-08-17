@@ -11,37 +11,53 @@ namespace App\Controller;
 
 use App\Constant\BaseUrl;
 use App\Constant\HttpMethod;
-use GuzzleHttp\Client;
+use App\Entity\WebScraper;
+use App\ScrapingEntityManager;
+use Goutte\Client;
 use ProgressBar\Manager;
 
 class GithubController extends WebScraperController {
 
+
   public function index(Client $client, $options = []) {
 
-    //$product = new Product();
-    //$product->setName($newProductName);
 
-    // Send an asynchronous request.
+    $crawler = $client->request(HttpMethod::GET, BaseUrl::GITHUB_PROJECTS);
+    $repoLists = $crawler->filter('ul.repo-list > li.repo-list-item');
+    $this->setManager(new Manager(0, count($repoLists)));
+    $this->getManager()->setFormat('%current%/%max% [%bar%] %percent%%');
+    $this->setCount(0);
+    $crawler->filter('ul.repo-list > li.repo-list-item')->each(function ($node) {
+//      print_r($node->filter( 'a' )->extract( array( 'href' ) ));
+//      print(preg_replace('/[\s\n]/', '', $node->filter( '.repo-list-name a' )->text()));
+//      print(trim($node->filter( '.repo-list-description' )->text()));
 
-    //$client = new \GuzzleHttp\Client();
-    //$request = new GuzzleHttp\Psr7\Request('GET', 'http://httpbin.org');
-    //$promise = $client->sendAsync($request)->then(function ($response) {
-    //  echo 'I completed! ' . $response->getBody();
-    //});
-    //$promise->wait();
-    //
-    //$entityManager->persist($product);
-    //$entityManager->flush();
-    //
-    //echo "Created Product with ID " . $product->getId() . "\n";
-    
-    $request = new \GuzzleHttp\Psr7\Request(HttpMethod::GET, BaseUrl::HTTPBIN);
+      $extractUrls = $node->filter( 'a' )->extract( array( 'href' )  );
+      foreach($extractUrls as $url) {
+        $concatBaseUrl[] = preg_match('/^\//', $url) ? BaseUrl::GITHUB . $url : $url;
+      }
 
-    $progressBar = new Manager(0, 10);
-    for($i = 0; $i <= 10; $i++) {
-      $progressBar->update($i);
+      $data = [
+        'url' => implode(';', $concatBaseUrl),
+        'repo_name' => preg_replace('/[\s\n]/', '', $node->filter( '.repo-list-name a' )->text()),
+        'repo_description' => trim($node->filter( '.repo-list-description' )->text()),
+      ];
+
+      $entityManager = ScrapingEntityManager::getEntityManager();
+
+      $webScraper = new WebScraper();
+      $webScraper->setData(serialize($data));
+      $webScraper->setIpAddress(gethostbyname(preg_replace('/^https?:\/\//', '', BaseUrl::GITHUB)));
+      $webScraper->setUrl(BaseUrl::GITHUB_PROJECTS);
+      $webScraper->setCreated();
+      $entityManager->persist($webScraper);
+      $entityManager->flush();
+
+      $this->getManager()->update($this->getCount() + 1);
       sleep(1);
-    }
+      $this->setCount($this->getCount() + 1);
+      print_r($data);
+    });
   }
 
 }
