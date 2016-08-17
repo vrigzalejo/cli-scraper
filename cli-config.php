@@ -8,4 +8,4 @@
 
 require_once "bootstrap.php";
 
-return \Doctrine\ORM\Tools\Console\ConsoleRunner::createHelperSet($entityManager);
+return \Doctrine\ORM\Tools\Console\ConsoleRunner::createHelperSet(\App\ScrapingEntityManager::getEntityManager());
