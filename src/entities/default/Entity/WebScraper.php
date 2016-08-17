@@ -55,7 +55,7 @@ class WebScraper {
   }
 
   public function setCreated() {
-      $this->sent_time = \DateTime::createFromFormat('U', time())->format('U');
+      $this->created = \DateTime::createFromFormat('U', time())->format('U');
   }
 
 }
