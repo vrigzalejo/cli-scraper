@@ -14,5 +14,9 @@ use App\Traits\ProgressBar;
 class WebScraperController {
   use CliOptions, ProgressBar;
 
+  protected $time;
+  protected $options = [];
+  protected $data = [];
+
   public function index() {}
 }
