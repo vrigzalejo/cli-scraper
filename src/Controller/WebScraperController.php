@@ -9,9 +9,10 @@
 namespace App\Controller;
 
 use App\Traits\CliOptions;
+use App\Traits\ProgressBar;
 
 class WebScraperController {
-  use CliOptions;
+  use CliOptions, ProgressBar;
 
   public function index() {}
 }
