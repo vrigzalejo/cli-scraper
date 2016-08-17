@@ -21,20 +21,20 @@ trait CliOptions {
 
   public function getParams($argv) {
 
-    $params = $this->params();
+    $params  = $this->params();
     $options = getopt(implode('', array_keys($params)), $params);
 
     // removed the file for checking the arguments
     $cliFile = array_shift($argv);
 
-    if($argv[0] === 'help') {
+    if ($argv[ 0 ] === 'help') {
       return $this->help();
     }
 
     if (!empty($argv) && empty($options)) {
       print("There's something wrong on your options.\n");
       print("Please type 'php cli.php help' to see the available commands.\n");
-      return false;
+      return FALSE;
     }
 
     foreach ($options as $k => $v) {
@@ -42,18 +42,31 @@ trait CliOptions {
         $opt = strlen($k) > 1 ? "--{$k}" : "-{$k}";
         print("Found duplicate '{$opt}' options.\n");
         print("Please type 'php cli.php help' to see the available commands.\n");
-        return false;
+        return FALSE;
       }
     }
 
-    if(isset($options['a']) && isset($options['action']) ||
-      isset($options['e']) && isset($options['export']) ||
-      isset($options['f']) && isset($options['file'])) {
+    if (isset($options[ 'a' ]) && isset($options[ 'action' ]) ||
+      isset($options[ 'e' ]) && isset($options[ 'export' ]) ||
+      isset($options[ 'f' ]) && isset($options[ 'file' ])
+    ) {
       print("Found duplicate type of options.\n");
       print("Please type 'php cli.php help' to see the available commands.\n");
-      return false;
+      return FALSE;
     }
 
+
+    if (isset($options[ 'e' ]) || isset($options[ 'export' ])) {
+      $checkExportOption = (isset($options[ 'e' ])) ? $options[ 'e' ] : $options[ 'export' ];
+
+      if (is_dir($checkExportOption)) {
+        return $options;
+      }
+      else {
+        print("Export path should be a directory.\n");
+        return FALSE;
+      }
+    }
 
     return $options;
   }
@@ -63,7 +76,7 @@ trait CliOptions {
     print('[-f|--file] ');
     print('[-a|--action] ');
     print('[-e|--export] ');
-    return false;
+    return FALSE;
   }
 
 }
