@@ -9,7 +9,7 @@
 require_once "bootstrap.php";
 
 
-$webScraperController = new \App\Controller\WebScraperController(); 
+$webScraperController = new \App\Controller\WebScraperController();
 $checkReturn = $webScraperController->getParams($argv);
 
 if(!$checkReturn) {
@@ -18,5 +18,5 @@ if(!$checkReturn) {
 
 if($checkReturn['a'] === 'github' || $checkReturn['action'] === 'github') {
   $githubController = new \App\Controller\GithubController();
-  $githubController->index(new \GuzzleHttp\Client(), $checkReturn);
+  $githubController->index(new \Goutte\Client(), $checkReturn);
 }
