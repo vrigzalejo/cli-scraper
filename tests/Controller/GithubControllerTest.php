@@ -14,16 +14,18 @@ use PHPUnit\Framework\TestCase;
 
 class GithubControllerTest extends TestCase {
 
-  public function testCanBeNegated()
+  public function testIndex()
   {
-    $testGithub = new GithubController();
-
     $testOptions = [
       'e' => 'tests/data'
     ];
 
-    // Assert
-    $this->assertFalse($testGithub->index(new \Goutte\Client(), $testOptions));
+    $mock = $this->getMockBuilder('App\Controller\GithubController')
+      ->setMethods(array('index'))
+      ->getMock();
+
+    $mock->expects($this->once())->method('index');
+    $mock->index(new \Goutte\Client(), $testOptions);
   }
 
 }
