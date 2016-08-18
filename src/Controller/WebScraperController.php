@@ -17,6 +17,5 @@ class WebScraperController {
   protected $time;
   protected $options = [];
   protected $data = [];
-
-  public function index() {}
+  
 }
