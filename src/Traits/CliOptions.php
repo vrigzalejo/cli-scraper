@@ -27,6 +27,12 @@ trait CliOptions {
     // removed the file for checking the arguments
     $cliFile = array_shift($argv);
 
+    if(empty($argv)) {
+      print("There's something wrong on your options.\n");
+      print("Please type 'php cli.php help' to see the available commands.\n");
+      return FALSE;
+    }
+
     if ($argv[ 0 ] === 'help') {
       return $this->help();
     }
@@ -76,6 +82,7 @@ trait CliOptions {
     print('[-f|--file] ');
     print('[-a|--action] ');
     print('[-e|--export] ');
+    print("\n");
     return FALSE;
   }
 
