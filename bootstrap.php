@@ -11,7 +11,7 @@ require_once "vendor/autoload.php";
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
-$isDevMode = TRUE;
+$isDevMode = true;
 
 $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/src/entities/default"), $isDevMode);
 
