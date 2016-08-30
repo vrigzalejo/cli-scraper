@@ -17,8 +17,8 @@
 
 #### Installation
 
-1) You need [composer](https://getcomposer.org/)
-2) composer install
+1. You need [composer](https://getcomposer.org/)
+2. composer install
 
 #### Basic options
 `-a [ action ]` or
@@ -27,9 +27,9 @@
 `-e [ export directory ]` or `--export`
 
 #### How it works
-1) Go to project folder
-2) `php cli.php -a github`
-3) To specify the export directory just add `-e <path>` (i.e. `php cli.php -a github -e ~/Downloads`)
+1. Go to project folder
+2. `php cli.php -a github`
+3. To specify the export directory just add `-e <path>` (i.e. `php cli.php -a github -e ~/Downloads`)
 
 #### Demo
 ![](https://media.giphy.com/media/3oz8xNIYVwm3Il1RDO/giphy.gif)
