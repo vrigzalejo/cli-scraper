@@ -11,6 +11,9 @@ namespace App\Traits;
 
 trait CliOptions {
 
+  /**
+   * @return array
+   */
   protected function params() {
     return [
       "f:" => "file:",
@@ -19,6 +22,11 @@ trait CliOptions {
     ];
   }
 
+  /**
+   * @param $argv see http://php.net/manual/en/reserved.variables.argv.php
+   *
+   * @return array|bool
+   */
   public function getParams($argv) {
 
     $params  = $this->params();
@@ -30,7 +38,7 @@ trait CliOptions {
     if(empty($argv)) {
       print("There's something wrong on your options.\n");
       print("Please type 'php cli.php help' to see the available commands.\n");
-      return FALSE;
+      return false;
     }
 
     if ($argv[ 0 ] === 'help') {
@@ -40,7 +48,7 @@ trait CliOptions {
     if (!empty($argv) && empty($options)) {
       print("There's something wrong on your options.\n");
       print("Please type 'php cli.php help' to see the available commands.\n");
-      return FALSE;
+      return false;
     }
 
     foreach ($options as $k => $v) {
@@ -48,7 +56,7 @@ trait CliOptions {
         $opt = strlen($k) > 1 ? "--{$k}" : "-{$k}";
         print("Found duplicate '{$opt}' options.\n");
         print("Please type 'php cli.php help' to see the available commands.\n");
-        return FALSE;
+        return false;
       }
     }
 
@@ -58,7 +66,7 @@ trait CliOptions {
     ) {
       print("Found duplicate type of options.\n");
       print("Please type 'php cli.php help' to see the available commands.\n");
-      return FALSE;
+      return false;
     }
 
 
@@ -70,20 +78,23 @@ trait CliOptions {
       }
       else {
         print("Export path should be a directory.\n");
-        return FALSE;
+        return false;
       }
     }
 
     return $options;
   }
 
+  /**
+   * @return bool
+   */
   protected function help() {
     print('usage: php cli.php ');
     print('[-f|--file] ');
     print('[-a|--action] ');
     print('[-e|--export] ');
     print("\n");
-    return FALSE;
+    return false;
   }
 
 }
