@@ -12,5 +12,5 @@ namespace App\Constant;
 class BaseUrl {
   const HTTPBIN = 'http://httpbin.org';
   const GITHUB = 'https://github.com';
-  const GITHUB_PROJECTS = 'https://github.com/showcases/projects-that-power-github';
+  const GITHUB_PROJECTS_THAT_POWER_GITHUB = 'https://github.com/showcases/projects-that-power-github';
 }
