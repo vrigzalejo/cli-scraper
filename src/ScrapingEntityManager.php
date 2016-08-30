@@ -15,10 +15,19 @@ class ScrapingEntityManager {
 
   private static $entityManager;
 
+  /**
+   * @param $conn
+   * @param $config
+   *
+   * @throws \Doctrine\ORM\ORMException
+   */
   public static function setEntityManager($conn, $config) {
     self::$entityManager = EntityManager::create($conn, $config);
   }
 
+  /**
+   * @return mixed
+   */
   public static function getEntityManager() {
     return self::$entityManager;
   }
