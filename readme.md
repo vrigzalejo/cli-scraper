@@ -32,7 +32,6 @@
 3) To specify the export directory just add `-e <path>` (i.e. `php cli.php -a github -e ~/Downloads`)
 
 #### Demo
-![](blob:http%3A//imgur.com/bdc01dd0-c3ef-49dd-8e2a-b9df1fdedb3f)
-
+![](https://media.giphy.com/media/3oz8xNIYVwm3Il1RDO/giphy.gif)
 
 
